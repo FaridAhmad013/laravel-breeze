@@ -15,8 +15,9 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-label for="username" :value="__('Username Or Email')" />
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />
+                <x-validation-message name="username"/>
                 <x-validation-message name="email"/>
             </div>
 
@@ -32,17 +33,22 @@
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            <div class="mt-4 flex items-center justify-between">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
+                @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                @if (Route::has('register'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('Register') }}
                     </a>
                 @endif
 
